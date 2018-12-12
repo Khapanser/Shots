@@ -65,45 +65,49 @@ class ServerSomthing extends Thread {
         try {
             // первое сообщение отправленное сюда - это никнейм
             word = in.readLine();
-            try {
-                out.write(word + "\n");
-                out.flush(); // flush() нужен для выталкивания оставшихся данных
+          //  try {
+                //out.write(word + "\n");
+               // out.flush(); // flush() нужен для выталкивания оставшихся данных
+                System.out.println("Пришёл никнейм"+word);
                 // если такие есть, и очистки потока для дьнейших нужд
-            } catch (IOException ignored) {}
+          //  } catch (IOException ignored) {}
             try {
                 while (true) {
                     word = in.readLine();
                     System.out.println("Echoing: " + word);
                     String[] strSpli = word.split(",");
-                    firstParam = Integer.parseInt(strSpli[0]);
+                    try {
+                        firstParam = Integer.parseInt(strSpli[0]);
 
-                    switch(firstParam) {
-                        case 0:
-                            for (ServerSomthing vr : Server.serverList) {
-                                vr.send("1,2,3"+firstParam); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
-                            }
-                            break;
-                        case 1:
-                            for (ServerSomthing vr : Server.serverList) {
-                                vr.send("0,2,3"+"\n"); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
-                            }
-                            break;
-                        default:
-                            for (ServerSomthing vr : Server.serverList) {
-                                vr.send("Команда не узнана"); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
-                            }
-                            break;
-
-                    }
+                        switch (firstParam) {
+                            case 0:
+                                for (ServerSomthing vr : Server.serverList) {
+                                    vr.send("1,1,1" + firstParam); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
+                                }
+                                System.out.println("Высылаем ответ на 0 с клиента в виде: 1,1,1");
+                                break;
+                            case 1:
+                                for (ServerSomthing vr : Server.serverList) {
+                                    vr.send("0,0,0" + "\n"); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
+                                }
+                                System.out.println("Высылаем ответ на 0 с клиента в виде: 0,0,0");
+                                break;
+                            default:
+                                for (ServerSomthing vr : Server.serverList) {
+                                    vr.send("Команда не узнана"); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
+                                }
+                                break;
+                        }
+                    }catch (NumberFormatException e){e.getStackTrace();}
                  /*   if(word.equals("stop")) {
                         this.downService(); // харакири
                         break; // если пришла пустая строка - выходим из цикла прослушки
                     }*/
-                    System.out.println("Echoing: " + word);
+                   // System.out.println("Echoing: " + word);
           //          Server.story.addStoryEl(word);
-                    for (ServerSomthing vr : Server.serverList) {
+                /*    for (ServerSomthing vr : Server.serverList) {
                         vr.send(word); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
-                    }
+                    }*/
                 }
             } catch (NullPointerException ignored) {}
 
@@ -119,7 +123,7 @@ class ServerSomthing extends Thread {
      */
     private void send(String msg) {
         try {
-            out.write(msg + "\n");
+            out.write(msg);
             out.flush();
         } catch (IOException ignored) {}
 

@@ -104,11 +104,12 @@ class ClientSomthing {
         public void run() {
 
             String str;
-            String[] strSplit;
+            String[] strSplit = {"",""};
             try {
                 while (true) {
                     str = in.readLine(); // ждем сообщения с сервера
-                    System.out.println(str); // пишем сообщение с сервера на консоль
+                    //if(!str.equals("")){
+                    System.out.println("string 111 -->  ."+str+"."); // пишем сообщение с сервера на консоль
                     strSplit = str.split(",");
                   /*  if (str.equals("stop")) {
                         ClientSomthing.this.downService(); // харакири
@@ -124,8 +125,8 @@ class ClientSomthing {
                               System.out.println("Нет протокола под такой сценарий" + "\n");
                               break;
                       }
-                  }catch (NumberFormatException e){e.getStackTrace();}
-                    System.out.println(str); // пишем сообщение с сервера на консоль
+                  }catch (NumberFormatException e){System.out.println("NumberFormatException e");}
+                   // System.out.println(str); // пишем сообщение с сервера на консоль
                 }
             } catch (IOException e) {
                 ClientSomthing.this.downService();
