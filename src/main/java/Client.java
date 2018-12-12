@@ -104,13 +104,27 @@ class ClientSomthing {
         public void run() {
 
             String str;
+            String[] strSplit;
             try {
                 while (true) {
                     str = in.readLine(); // ждем сообщения с сервера
-                    if (str.equals("stop")) {
+                    System.out.println(str); // пишем сообщение с сервера на консоль
+                    strSplit = str.split(",");
+                  /*  if (str.equals("stop")) {
                         ClientSomthing.this.downService(); // харакири
                         break; // выходим из цикла если пришло "stop"
-                    }
+                    }*/
+                  try {
+                      int firstParam = Integer.parseInt(strSplit[0]);
+                      switch (firstParam) {
+                          case 0:
+                              System.out.println("Клиент отправил 1 и сервер ответил нулём!" + "\n");
+                              break;
+                          default:
+                              System.out.println("Нет протокола под такой сценарий" + "\n");
+                              break;
+                      }
+                  }catch (NumberFormatException e){e.getStackTrace();}
                     System.out.println(str); // пишем сообщение с сервера на консоль
                 }
             } catch (IOException e) {

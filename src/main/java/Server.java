@@ -21,7 +21,7 @@ public class Server {
      //   story = new Story();
         System.out.println("Server Started");
         try {
-            while (true) {
+                while (true) {
                 // Блокируется до возникновения нового соединения:
                 Socket socket = server.accept();
                 try {
@@ -73,18 +73,19 @@ class ServerSomthing extends Thread {
             try {
                 while (true) {
                     word = in.readLine();
+                    System.out.println("Echoing: " + word);
                     String[] strSpli = word.split(",");
                     firstParam = Integer.parseInt(strSpli[0]);
 
                     switch(firstParam) {
                         case 0:
                             for (ServerSomthing vr : Server.serverList) {
-                                vr.send("Команда с номером"+firstParam); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
+                                vr.send("1,2,3"+firstParam); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
                             }
                             break;
                         case 1:
                             for (ServerSomthing vr : Server.serverList) {
-                                vr.send("Команда с номером"+firstParam); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
+                                vr.send("0,2,3"+"\n"); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
                             }
                             break;
                         default:
