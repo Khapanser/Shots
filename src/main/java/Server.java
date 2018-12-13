@@ -1,9 +1,13 @@
 package main.java;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.net.*;
 import java.util.*;
+import java.util.UUID;
+
+/**
+ * serverList заменён на HashMap, где 1ый элемент = ServerSomthing, а второй = UUID
+ */
 
 public class Server {
 
@@ -13,16 +17,10 @@ public class Server {
     //Создадим список для действий:
     public static List<Integer> actions = new ArrayList<>();
     public static List<Integer> roles = new ArrayList<>();
+    //добавляем hashMap
+    public static HashMap<String,ServerSomthing> serverMap = new HashMap<>();
+    //public static LinkedList<ServerSomthing> serverList = new LinkedList<>(); // список всех нитей - экземпляров
 
-
-    public static LinkedList<ServerSomthing> serverList = new LinkedList<>(); // список всех нитей - экземпляров
-    // сервера, слушающих каждый своего клиента
- //   public static Story story; // история переписки
-
-    /**
-     * @param args
-     * @throws IOException
-     */
 
     public static void main(String[] args) throws IOException {
 
@@ -44,7 +42,13 @@ public class Server {
                 // Блокируется до возникновения нового соединения:
                 Socket socket = server.accept();
                 try {
-                    serverList.add(new ServerSomthing(socket)); // добавить новое соединенние в список
+                    //Создаём ID подключения
+                    UUID uuid = UUID.randomUUID();
+                    String randomUUIDString = uuid.toString();
+                    //добавляем в serverMap новое подключение и его ID
+                    serverMap.put(randomUUIDString,new ServerSomthing(socket));
+
+                    //serverList.add(new ServerSomthing(socket)); // добавить новое соединенние в список
                 } catch (IOException e) {
                     // Если завершится неудачей, закрывается сокет,
                     // в противном случае, нить закроет его:
@@ -87,9 +91,9 @@ class ServerSomthing extends Thread {
           //  try {
                 //out.write(word + "\n");
                // out.flush(); // flush() нужен для выталкивания оставшихся данных
-                System.out.println("Пришёл никнейм"+word);
+                System.out.println("Пришёл никнейм "+word);
                 // если такие есть, и очистки потока для дьнейших нужд
-          //  } catch (IOException ignored) {}
+           } catch (IOException ignored) {}
             try {
                 while (true) {
                     word = in.readLine();
@@ -100,13 +104,19 @@ class ServerSomthing extends Thread {
 
                         switch (firstParam) {
                             case 0:
-                                //Высылаем код, что программа запущена
-                                for (ServerSomthing vr : Server.serverList) {
-                                    System.out.println("выслали 0");
-                                    vr.send("0" + "\n"); // рассылаем код 0
+                                //Высылаем код, что программа запущена и одновременно присылается ID игрока
+                                for(Map.Entry<String, ServerSomthing> entry : Server.serverMap.entrySet()) {
+                                    String keyID = entry.getKey();
+                                    ServerSomthing value = entry.getValue();
+                                    System.out.println("0,"+keyID);
+                                    value.send("0,"+keyID+"\n");
                                 }
+
                                 //Высылаем карточки действия и роли
-                                for (ServerSomthing vr : Server.serverList) {
+                                for(Map.Entry<String, ServerSomthing> entry : Server.serverMap.entrySet()) {
+                                    String keyID = entry.getKey();
+                                    ServerSomthing value = entry.getValue();
+
                                     String actionsPlusRole = "1,";
                                     int si = 0;
                                     int ro = 0;
@@ -121,26 +131,26 @@ class ServerSomthing extends Thread {
                                     actionsPlusRole = actionsPlusRole.concat(""+Server.roles.get(ro));
                                     Server.roles.remove(ro);
                                     System.out.println("выслали код 1 + карты действий + роль"+ actionsPlusRole);
-                                    vr.send(actionsPlusRole + "\n"); // рассылаем код 1
+                                    value.send(actionsPlusRole + "\n"); // рассылаем код 1
                                 }
 
-                                for (ServerSomthing vr : Server.serverList) {
-                                    System.out.println("выслали соde 2 и номер клиента 1");
-                                    vr.send("2,1"+ "\n"); //code 2 and 1 userNumber (потом будет выбор кто начинает)
+                                for(Map.Entry<String, ServerSomthing> entry : Server.serverMap.entrySet()) {
+                                    String keyID = entry.getKey();
+                                    ServerSomthing value = entry.getValue();
+                                    System.out.println("выслали соde 2 и client's id (who starts)");
+                                    value.send("2,"+ Server.serverMap.keySet().toArray()[0]+ "\n");
                                 }
-
-                               // System.out.println("Высылаем ответ на 0 с клиента в виде: 0");
                                 break;
                             case 1:
-                                for (ServerSomthing vr : Server.serverList) {
+                              /*  for (ServerSomthing vr : Server.serverList) {
                                     vr.send("0,0,0"+ "\n"); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
-                                }
+                                }*/
                                 System.out.println("Высылаем ответ на 0 с клиента в виде: 0,0,0");
                                 break;
                             default:
-                                for (ServerSomthing vr : Server.serverList) {
+                               /* for (ServerSomthing vr : Server.serverList) {
                                     vr.send("Команда не узнана"); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
-                                }
+                                }*/
                                 break;
                         }
                     }catch (NumberFormatException e){e.getStackTrace();}
@@ -157,8 +167,8 @@ class ServerSomthing extends Thread {
             } catch (NullPointerException ignored) {}
 
 
-        } catch (IOException e) {
-            this.downService();
+         catch (IOException e) {
+          /*  this.downService();*/
         }
     }
 
@@ -178,6 +188,7 @@ class ServerSomthing extends Thread {
      * закрытие сервера
      * прерывание себя как нити и удаление из списка нитей
      */
+    /*
     private void downService() {
         try {
             if(!socket.isClosed()) {
@@ -190,7 +201,7 @@ class ServerSomthing extends Thread {
                 }
             }
         } catch (IOException ignored) {}
-    }
+    }*/
 }
 
 

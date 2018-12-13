@@ -33,6 +33,7 @@ class ClientSomthing {
     private String addr; // ip адрес клиента
     private int port; // порт соединения
     private String nickname; // имя клиента
+    private String id; //client's ID
     private Date time;
     private String dtime;
     private SimpleDateFormat dt1;
@@ -78,7 +79,7 @@ class ClientSomthing {
         System.out.print("Press your nick: ");
         try {
             nickname = inputUser.readLine();
-            out.write("Hello " + nickname + "\n");
+            out.write(nickname + "\n");
             out.flush();
         } catch (IOException ignored) {
         }
@@ -121,14 +122,16 @@ class ClientSomthing {
                       int firstParam = Integer.parseInt(strSplit[0]);
                       switch (firstParam) {
                           case 0:
-                              System.out.println("Клиент отправил 1 и сервер ответил нулём!" + "\n");
+                              System.out.println("Клиент отправил 0 и сервер ответил 0!" + "\n");
+                              id = strSplit[1];
+                              System.out.println("Server set ID for this client: "+id);
                               break;
                           default:
                               System.out.println("Нет протокола под такой сценарий" + "\n");
                               break;
                       }
                   }catch (NumberFormatException e){System.out.println("NumberFormatException e");}
-                   // System.out.println(str); // пишем сообщение с сервера на консоль
+
                 }
             } catch (IOException e) {
                 ClientSomthing.this.downService();
