@@ -1,12 +1,20 @@
 package main.java;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.net.*;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Server {
 
     public static final int PORT = 8080;
+
+    //PRECONDITIONS
+    //Создадим список для действий:
+    public static List<Integer> actions = new ArrayList<>();
+    public static List<Integer> roles = new ArrayList<>();
+
+
     public static LinkedList<ServerSomthing> serverList = new LinkedList<>(); // список всех нитей - экземпляров
     // сервера, слушающих каждый своего клиента
  //   public static Story story; // история переписки
@@ -17,6 +25,17 @@ public class Server {
      */
 
     public static void main(String[] args) throws IOException {
+
+        //Заполняем actions даннымию 1 - shot. 2 - мимо
+        actions.addAll(Arrays.asList(1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2));
+        //Перемешиваем листок:
+        Collections.shuffle(actions);
+
+        //Заполняем actions даннымию 1 - shot. 2 - мимо
+        roles.addAll(Arrays.asList(1,2,3));
+        //Перемешиваем листок:
+        Collections.shuffle(roles);
+
         ServerSocket server = new ServerSocket(PORT);
      //   story = new Story();
         System.out.println("Server Started");
@@ -81,14 +100,40 @@ class ServerSomthing extends Thread {
 
                         switch (firstParam) {
                             case 0:
+                                //Высылаем код, что программа запущена
                                 for (ServerSomthing vr : Server.serverList) {
-                                    vr.send("1,1,1" + firstParam); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
+                                    System.out.println("выслали 0");
+                                    vr.send("0" + "\n"); // рассылаем код 0
                                 }
-                                System.out.println("Высылаем ответ на 0 с клиента в виде: 1,1,1");
+                                //Высылаем карточки действия и роли
+                                for (ServerSomthing vr : Server.serverList) {
+                                    String actionsPlusRole = "1,";
+                                    int si = 0;
+                                    int ro = 0;
+                                    //int count = 2;
+                                    for (int i = 0; i<6; i++)
+                                    {
+                                        si = Server.actions.size()-1;
+                                        actionsPlusRole = actionsPlusRole.concat(""+(Server.actions.get(si))+",");
+                                        Server.actions.remove(si);
+                                    }
+                                    ro = Server.roles.size()-1;
+                                    actionsPlusRole = actionsPlusRole.concat(""+Server.roles.get(ro));
+                                    Server.roles.remove(ro);
+                                    System.out.println("выслали код 1 + карты действий + роль"+ actionsPlusRole);
+                                    vr.send(actionsPlusRole + "\n"); // рассылаем код 1
+                                }
+
+                                for (ServerSomthing vr : Server.serverList) {
+                                    System.out.println("выслали соde 2 и номер клиента 1");
+                                    vr.send("2,1"+ "\n"); //code 2 and 1 userNumber (потом будет выбор кто начинает)
+                                }
+
+                               // System.out.println("Высылаем ответ на 0 с клиента в виде: 0");
                                 break;
                             case 1:
                                 for (ServerSomthing vr : Server.serverList) {
-                                    vr.send("0,0,0" + "\n"); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
+                                    vr.send("0,0,0"+ "\n"); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
                                 }
                                 System.out.println("Высылаем ответ на 0 с клиента в виде: 0,0,0");
                                 break;

@@ -107,9 +107,11 @@ class ClientSomthing {
             String[] strSplit = {"",""};
             try {
                 while (true) {
+                    System.out.println("В цикле получения сообщения... ");
                     str = in.readLine(); // ждем сообщения с сервера
+
                     //if(!str.equals("")){
-                    System.out.println("string 111 -->  ."+str+"."); // пишем сообщение с сервера на консоль
+                    System.out.println("string 111 -->  "+str); // пишем сообщение с сервера на консоль
                     strSplit = str.split(",");
                   /*  if (str.equals("stop")) {
                         ClientSomthing.this.downService(); // харакири
