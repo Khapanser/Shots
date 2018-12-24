@@ -30,7 +30,7 @@ public class Server {
         Collections.shuffle(actions);
 
         //Заполняем actions даннымию 1 - shot. 2 - мимо
-        roles.addAll(Arrays.asList(1,2,3));
+        roles.addAll(Arrays.asList(1,2,3,2));
         //Перемешиваем листок:
         Collections.shuffle(roles);
 
