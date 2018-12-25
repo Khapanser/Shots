@@ -1,24 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.7959866220735786" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.172-ea">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="925.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="678.0" prefWidth="773.0">
          <children>
-            <SplitPane dividerPositions="0.7377892030848329" layoutX="2.0" layoutY="1.0" orientation="VERTICAL" prefHeight="391.0" prefWidth="464.0">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                     <children>
-                        <ScrollBar layoutY="78.0" prefHeight="14.0" prefWidth="462.0" />
-                     </children>
-                  </AnchorPane>
-              </items>
-            </SplitPane>
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="75.0" />
-  </items>
-</SplitPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+            <Separator prefHeight="36.0" prefWidth="743.0" style="-fx-background-color: #f125;" />
+            <AnchorPane prefHeight="154.0" prefWidth="743.0">
+               <children>
+                  <ListView orientation="HORIZONTAL" prefHeight="200.0" prefWidth="738.0">
+                     <opaqueInsets>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </opaqueInsets>
+                  </ListView>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <Separator orientation="VERTICAL" prefHeight="678.0" prefWidth="45.0" style="-fx-background-color: #f125;" />
+      <AnchorPane maxWidth="100.0" prefHeight="678.0">
+         <children>
+            <Button layoutX="33.0" layoutY="426.0" mnemonicParsing="false" text="Start" />
+            <Button layoutX="28.0" layoutY="576.0" mnemonicParsing="false" text="Attack" />
+            <Button layoutX="21.0" layoutY="476.0" mnemonicParsing="false" text="Question" />
+            <Button layoutX="17.0" layoutY="528.0" mnemonicParsing="false" text="Finish turn" />
+         </children>
+         <opaqueInsets>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </opaqueInsets>
+      </AnchorPane>
+   </children>
+</HBox>
