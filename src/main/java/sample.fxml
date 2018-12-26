@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -8,15 +10,96 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="925.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="925.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.Controller">
    <children>
-      <VBox prefHeight="678.0" prefWidth="773.0">
+      <VBox prefHeight="678.0" prefWidth="738.0">
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-            <Separator prefHeight="36.0" prefWidth="743.0" style="-fx-background-color: #f125;" />
-            <AnchorPane prefHeight="154.0" prefWidth="743.0">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="332.0" layoutY="14.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: #f45;" text="         Pl1   " textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="88.0" fitWidth="63.0" layoutX="341.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Yellow_card.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f77;">
+               <children>
+                  <ImageView fitHeight="135.0" fitWidth="174.0" layoutX="328.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Yellow_card.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="24.0" layoutY="23.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: #f45;" text="         Pl2   " textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="602.0" layoutY="23.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: #f45;" text="         Pl3   " textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="88.0" fitWidth="63.0" layoutX="35.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Yellow_card.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="88.0" fitWidth="63.0" layoutX="614.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Yellow_card.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="140.0" layoutY="14.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: #f45;" text="   Your Role   " textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="88.0" fitWidth="63.0" layoutX="152.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Yellow_card.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="idLabel1" layoutX="244.0" layoutY="14.0" prefHeight="20.0" prefWidth="87.0" style="-fx-background-color: #f45;" text="     Your ID" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="roleLabel" layoutX="349.0" layoutY="52.0" prefHeight="20.0" prefWidth="369.0" style="-fx-background-color: #f45;" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cardsLabel" layoutX="349.0" layoutY="93.0" prefHeight="20.0" prefWidth="369.0" style="-fx-background-color: #f45;" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="idLabel" layoutX="349.0" layoutY="14.0" prefHeight="20.0" prefWidth="369.0" style="-fx-background-color: #f45;" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="roleLabel1" layoutX="243.0" layoutY="52.0" prefHeight="20.0" prefWidth="89.0" style="-fx-background-color: #f45;" text="     Your Role" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cardsLabel1" layoutX="243.0" layoutY="93.0" prefHeight="20.0" prefWidth="89.0" style="-fx-background-color: #f45;" text="     Your Cards" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <Separator maxHeight="-Infinity" prefHeight="10.0" prefWidth="743.0" style="-fx-background-color: #f125;" />
+            <AnchorPane prefHeight="200.0" prefWidth="726.0">
                <children>
                   <ListView orientation="HORIZONTAL" prefHeight="200.0" prefWidth="738.0">
                      <opaqueInsets>
@@ -27,10 +110,10 @@
             </AnchorPane>
          </children>
       </VBox>
-      <Separator orientation="VERTICAL" prefHeight="678.0" prefWidth="45.0" style="-fx-background-color: #f125;" />
+      <Separator maxWidth="-Infinity" orientation="VERTICAL" prefHeight="678.0" prefWidth="10.0" style="-fx-background-color: #f125;" />
       <AnchorPane maxWidth="100.0" prefHeight="678.0">
          <children>
-            <Button layoutX="33.0" layoutY="426.0" mnemonicParsing="false" text="Start" />
+            <Button fx:id="startButton" layoutX="33.0" layoutY="426.0" mnemonicParsing="false" onAction="#startButtonAction" text="Start" />
             <Button layoutX="28.0" layoutY="576.0" mnemonicParsing="false" text="Attack" />
             <Button layoutX="21.0" layoutY="476.0" mnemonicParsing="false" text="Question" />
             <Button layoutX="17.0" layoutY="528.0" mnemonicParsing="false" text="Finish turn" />

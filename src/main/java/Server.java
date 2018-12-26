@@ -112,6 +112,8 @@ class ServerSomthing extends Thread {
                                     value.send("0,"+keyID+"\n");
                                 }
 
+                                try{ Thread.sleep(100);}catch (Exception d){}
+
                                 //Высылаем карточки действия и роли
                                 for(Map.Entry<String, ServerSomthing> entry : Server.serverMap.entrySet()) {
                                     String keyID = entry.getKey();

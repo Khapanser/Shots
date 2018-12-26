@@ -6,14 +6,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.*;
+import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Shots");
         primaryStage.setScene(new Scene(root, 900, 700));
         primaryStage.show();
+
+        ClientSomthing cls = new ClientSomthing("localhost", 8080);
+        //Попробуем создать контроллер
+        Controller ctrl = new Controller(cls);
     }
 
 
@@ -21,3 +30,4 @@ public class Main extends Application {
         launch(args);
     }
 }
+
