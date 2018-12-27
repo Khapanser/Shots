@@ -1,3 +1,4 @@
+/*
 package main.java;
 
 import javafx.fxml.FXML;
@@ -25,12 +26,14 @@ public class ClientSomthing {
     private String dtime;
     private SimpleDateFormat dt1;
 
-    /**
+    */
+/**
      * для создания необходимо принять адрес и номер порта
      *
      * @param addr
      * @param port
-     */
+     *//*
+
 
     public ClientSomthing(String addr, int port) {
         System.out.println("ClientSomthing started!");
@@ -58,10 +61,12 @@ public class ClientSomthing {
         // в методе run() нити.
     }
 
-    /**
+    */
+/**
      * просьба ввести имя,
      * и отсылка эхо с приветсвием на сервер
-     */
+     *//*
+
 
     private void pressNickname() {
         System.out.print("Press your nick: ");
@@ -74,9 +79,11 @@ public class ClientSomthing {
 
     }
 
-    /**
+    */
+/**
      * закрытие сокета
-     */
+     *//*
+
     private void downService() {
         try {
             if (!socket.isClosed()) {
@@ -109,10 +116,12 @@ public class ClientSomthing {
                     splittedMessage = Arrays.asList(str.split(","));
                     arrSplitMess = (String[])splittedMessage.toArray();
                     //strSplit = str.split(",");
-                  /*  if (str.equals("stop")) {
+                  */
+/*  if (str.equals("stop")) {
                         ClientSomthing.this.downService(); // харакири
                         break; // выходим из цикла если пришло "stop"
-                    }*/
+                    }*//*
+
                     try {
                         int firstParam = Integer.parseInt(arrSplitMess[0]);
                         switch (firstParam) {
@@ -176,4 +185,4 @@ public class ClientSomthing {
         }
     }
 
-}
+}*/

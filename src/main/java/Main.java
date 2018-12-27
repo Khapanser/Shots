@@ -20,9 +20,11 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 900, 700));
         primaryStage.show();
 
-        ClientSomthing cls = new ClientSomthing("localhost", 8080);
+     //   ClientSomthing cls = new ClientSomthing("localhost", 8080);
         //Попробуем создать контроллер
-        Controller ctrl = new Controller(cls);
+     //   Controller ctrl = new Controller(cls);
+
+        //Controller ctrl = new Controller();
     }
 
 
