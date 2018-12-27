@@ -23,7 +23,7 @@
                   </Label>
                   <ImageView fitHeight="88.0" fitWidth="63.0" layoutX="341.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Yellow_card.png" />
+                        <Image url="@../../Yellow_card.png" />
                      </image>
                   </ImageView>
                </children></AnchorPane>
@@ -31,7 +31,7 @@
                <children>
                   <ImageView fitHeight="135.0" fitWidth="174.0" layoutX="328.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Yellow_card.png" />
+                        <Image url="@../../Yellow_card.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="24.0" layoutY="23.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: #f45;" text="         Pl2   " textFill="WHITE">
@@ -46,12 +46,12 @@
                   </Label>
                   <ImageView fitHeight="88.0" fitWidth="63.0" layoutX="35.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Yellow_card.png" />
+                        <Image url="@../../Yellow_card.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="88.0" fitWidth="63.0" layoutX="614.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Yellow_card.png" />
+                        <Image url="@../../Yellow_card.png" />
                      </image>
                   </ImageView>
                </children></AnchorPane>
@@ -64,7 +64,7 @@
                   </Label>
                   <ImageView fitHeight="88.0" fitWidth="63.0" layoutX="152.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Yellow_card.png" />
+                        <Image url="@../../Yellow_card.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="idLabel1" layoutX="244.0" layoutY="14.0" prefHeight="20.0" prefWidth="87.0" style="-fx-background-color: #f45;" text="     Your ID" textFill="WHITE">

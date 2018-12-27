@@ -1,5 +1,8 @@
 package main.java;
 
+import objects.Partiсipant;
+import utilities.ChangeParticipant;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -12,6 +15,8 @@ import java.util.UUID;
 public class Server {
 
     public static final int PORT = 8080;
+    //list of Participants
+    public static List<Partiсipant> partiсipantsList = new ArrayList<>();
 
     //PRECONDITIONS
     //Создадим список для действий:
@@ -25,7 +30,7 @@ public class Server {
     public static void main(String[] args) throws IOException {
 
         //Заполняем actions даннымию 1 - shot. 2 - мимо
-        actions.addAll(Arrays.asList(1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2));
+        actions.addAll(Arrays.asList(1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,1,2,1,2));
         //Перемешиваем листок:
         Collections.shuffle(actions);
 
@@ -45,10 +50,10 @@ public class Server {
                     //Создаём ID подключения
                     UUID uuid = UUID.randomUUID();
                     String randomUUIDString = uuid.toString();
-                    //добавляем в serverMap новое подключение и его ID
+//Добавим нового participant с созданным ID:
+                    partiсipantsList.add(new Partiсipant(randomUUIDString));
+//добавляем в serverMap новое подключение и его ID
                     serverMap.put(randomUUIDString,new ServerSomthing(socket));
-
-                    //serverList.add(new ServerSomthing(socket)); // добавить новое соединенние в список
                 } catch (IOException e) {
                     // Если завершится неудачей, закрывается сокет,
                     // в противном случае, нить закроет его:
@@ -105,6 +110,7 @@ class ServerSomthing extends Thread {
                         switch (firstParam) {
                             case 0:
                                 //Высылаем код, что программа запущена и одновременно присылается ID игрока
+                                // Code: 0
                                 for(Map.Entry<String, ServerSomthing> entry : Server.serverMap.entrySet()) {
                                     String keyID = entry.getKey();
                                     ServerSomthing value = entry.getValue();
@@ -113,34 +119,46 @@ class ServerSomthing extends Thread {
                                 }
 
                                 try{ Thread.sleep(100);}catch (Exception d){}
-
                                 //Высылаем карточки действия и роли
+                                //Code: 1
                                 for(Map.Entry<String, ServerSomthing> entry : Server.serverMap.entrySet()) {
                                     String keyID = entry.getKey();
                                     ServerSomthing value = entry.getValue();
 
                                     String actionsPlusRole = "1,";
+                                    Integer[] cards6 = new Integer[6];
                                     int si = 0;
                                     int ro = 0;
-                                    //int count = 2;
                                     for (int i = 0; i<6; i++)
                                     {
                                         si = Server.actions.size()-1;
                                         actionsPlusRole = actionsPlusRole.concat(""+(Server.actions.get(si))+",");
+                                        cards6[i] = Server.actions.get(si) ;
+// передаём все карты по очереди и Participant с текущим keyID:
+                                        ChangeParticipant.addCard(keyID,Server.partiсipantsList,Server.actions.get(si));
                                         Server.actions.remove(si);
                                     }
                                     ro = Server.roles.size()-1;
                                     actionsPlusRole = actionsPlusRole.concat(""+Server.roles.get(ro));
+// сохраняем роль для нужного Participant
+                                    ChangeParticipant.addRole(keyID,Server.partiсipantsList,Server.roles.get(ro));
                                     Server.roles.remove(ro);
-                                    System.out.println("выслали код 1 + карты действий + роль"+ actionsPlusRole);
+                                    System.out.println("выслали код 1 + карты действий + роль: "+ actionsPlusRole);
                                     value.send(actionsPlusRole + "\n"); // рассылаем код 1
                                 }
+//TODO высылаем все айпишники + Имя. Нужно предварительно сделать добавление имени в participants.
+//Code 2
 
+
+
+
+                                //Высылаем ID того, кто начнёт ход первым.
+                                //Код 3
                                 for(Map.Entry<String, ServerSomthing> entry : Server.serverMap.entrySet()) {
                                     String keyID = entry.getKey();
                                     ServerSomthing value = entry.getValue();
-                                    System.out.println("выслали соde 2 и client's id (who starts)");
-                                    value.send("2,"+ Server.serverMap.keySet().toArray()[0]+ "\n");
+                                    System.out.println("выслали соde 3 и client's id (who starts)");
+                                    value.send("3,"+ Server.serverMap.keySet().toArray()[0]+ "\n");
                                 }
                                 break;
                             case 1:
