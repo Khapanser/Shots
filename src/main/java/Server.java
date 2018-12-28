@@ -53,6 +53,7 @@ public class Server {
 //Добавим нового participant с созданным ID:
                     partiсipantsList.add(new Partiсipant(randomUUIDString));
 //добавляем в serverMap новое подключение и его ID
+                    //TODO сделать переменную для ClientSomthing и добавлять её в созданного Participants вместе с UUID
                     serverMap.put(randomUUIDString,new ServerSomthing(socket));
                 } catch (IOException e) {
                     // Если завершится неудачей, закрывается сокет,
@@ -90,15 +91,16 @@ class ServerSomthing extends Thread {
     public void run() {
         String word;
         int firstParam = 300;
-        try {
+     /*   try {
             // первое сообщение отправленное сюда - это никнейм
             word = in.readLine();
           //  try {
                 //out.write(word + "\n");
                // out.flush(); // flush() нужен для выталкивания оставшихся данных
                 System.out.println("Пришёл никнейм "+word);
+
                 // если такие есть, и очистки потока для дьнейших нужд
-           } catch (IOException ignored) {}
+           } catch (IOException ignored) {}*/
             try {
                 while (true) {
                     word = in.readLine();

@@ -1,6 +1,8 @@
 package objects;
 
 
+import main.java.Controller;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class Partiсipant {
     public static int persona;
     public static List<Integer> weapons = new ArrayList<>();
     public static List<Integer> hand = new ArrayList<>();
+    public static Controller.ClientSomthing clientSomthing;
 
 //setters and getters
 

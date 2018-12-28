@@ -97,6 +97,16 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
+                  <Label fx:id="cardsLabel11" layoutX="243.0" layoutY="124.0" prefHeight="20.0" prefWidth="89.0" style="-fx-background-color: #f45;" text="    Your name" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nameLabel" layoutX="349.0" layoutY="124.0" prefHeight="20.0" prefWidth="369.0" style="-fx-background-color: #f45;" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
             <Separator maxHeight="-Infinity" prefHeight="10.0" prefWidth="743.0" style="-fx-background-color: #f125;" />
             <AnchorPane prefHeight="200.0" prefWidth="726.0">

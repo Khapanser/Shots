@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="208.0" prefWidth="305.0" style="-fx-background-color: #ff4500;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.nameController">
+<AnchorPane prefHeight="208.0" prefWidth="305.0" style="-fx-background-color: #ff4500;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.Main">
    <children>
       <VBox prefHeight="209.0" prefWidth="331.0">
          <children>
@@ -24,7 +24,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TextArea layoutX="41.0" layoutY="16.0" prefHeight="38.0" prefWidth="238.0">
+                  <TextArea fx:id="nameField" layoutX="41.0" layoutY="16.0" prefHeight="38.0" prefWidth="238.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -33,7 +33,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="nameButton" layoutX="117.0" layoutY="20.0" mnemonicParsing="false" onAction="#nameButtonAction" style="-fx-background-color: f1512;" text="Lets do it!">
+                  <Button fx:id="nameButton" layoutX="117.0" layoutY="20.0" mnemonicParsing="false" onAction="#nameButton" text="Lets do it!">
                      <font>
                         <Font size="14.0" />
                      </font>

@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 import java.io.*;
 import java.net.Socket;
@@ -19,6 +20,8 @@ public class Controller{
     public static List<Integer> cards = new ArrayList<>();
     public static String role;
     public static ClientSomthing cls;
+    public static String nickname;
+
 
 
     @FXML
@@ -29,6 +32,10 @@ public class Controller{
     public Label roleLabel;
     @FXML
     public Label cardsLabel;
+    @FXML
+    public Label nameLabel;
+
+
 
 //конструктор:
     public Controller(){
@@ -39,14 +46,30 @@ public class Controller{
         uuid = s;
     }
 
+    public void messFromNameCtrl(String s){
+        this.nickname = s;
+        System.out.println("НИКНЕЙМ ЗАПИСАЛСЯ НА КЛИЕНТЕ: "+nickname);
+    }
+
     public void startButtonAction(ActionEvent actionEvent) {
         System.out.println("Start button clicked");
         try {
-            cls.out.write("0,0"+"\n");
+            cls.out.write("0,"+nickname+"\n");
             cls.out.flush();
         } catch (Exception io){System.out.println("Ошибка при попытке отправить сообщение на сервер при нажатии Start Button");}
 
     }
+
+/*
+    public void nameButton(ActionEvent actionEvent) {
+        System.out.println("Name button clicked");
+        this.nickname = (String)nameField.getText();
+        System.out.println("На клиенте nickname теперь = "+nickname);
+
+
+
+    }*/
+
 
 //----------------------------------------------------------------------------------------------------------------------
 /** Ниже описан клиент, содержащий протокол общения с сервером и выполняющий соответствующие обновления GUI
@@ -60,7 +83,7 @@ public class Controller{
         public BufferedReader inputUser; // поток чтения с консоли
         private String addr; // ip адрес клиента
         private int port; // порт соединения
-        private String nickname; // имя клиента
+        private String nick; // имя клиента
         private String id; //client's ID
         private Date time;
         private String dtime;
@@ -102,10 +125,10 @@ public class Controller{
         private void pressNickname() {
             System.out.print("Press your nick: ");
             try {
-                //временная строка:
-                nickname = "test";
+
 // TODO Здесь надо отправить значение из ModalWindow. nickname = inputUser.readLine();
-                out.write(nickname + "\n");
+
+                out.write("test" + "\n");
                 out.flush();
             } catch (IOException ignored) {
             }
@@ -177,6 +200,7 @@ public class Controller{
                                                 startButton.setDisable(true);
                                             }
                                     );
+                                //TODO ответ на код
 
                                 default:
                                     System.out.println("Нет протокола под такой сценарий" + "\n");
