@@ -44,7 +44,7 @@
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
                               <Stop color="BLACK" />
-                              <Stop color="WHITE" offset="1.0" />
+                              <Stop color="BLACK" offset="1.0" />
                            </stops>
                         </LinearGradient>
                      </textFill>
