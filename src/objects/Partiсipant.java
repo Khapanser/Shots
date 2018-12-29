@@ -14,13 +14,15 @@ public class Partiсipant {
     }
 
 //static members (variables)
-    public static String uuid;
-    public static int role;
-    public static int persona;
-    public static List<Integer> weapons = new ArrayList<>();
-    public static List<Integer> hand = new ArrayList<>();
-    public static Controller.ClientSomthing clientSomthing;
+    public  String uuid;
+    public  int role;
+    public  int persona;
+    public  String nickname;
+    public  List<Integer> weapons = new ArrayList<>();
+    public  List<Integer> hand = new ArrayList<>();
+    public  Controller.ClientSomthing clientSomthing;
 
-//setters and getters
+//setters and getters\
+
 
 }

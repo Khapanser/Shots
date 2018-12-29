@@ -175,7 +175,7 @@ public class Controller{
                 //String cards6 = "";
                 //TODO: надо заменить на ArrayList и конвертировать, т.к. массив фиксированный
                 List<String> splittedMessage;
-                String[] strSplit = {"", "", "", "", "", "", "", ""};
+                //String[] strSplit = {"", "", "", "", "", "", "", ""};
                 String[] arrSplitMess;
                 try {
                     while (true) {
@@ -211,6 +211,13 @@ public class Controller{
                                     }
                                     Controller.role = arrSplitMess[7];
 
+                                    //Попробуем выслать серверу ID + nickname с номером 2
+                                    //Code: 2
+                                    try {
+                                        cls.out.write("2,"+uuid+","+nickname+"\n");
+                                        cls.out.flush();
+                                    } catch (Exception io){System.out.println("Ошибка при попытке отправить uuid + nickname");}
+
                                     // Avoid throwing IllegalStateException by running from a non-JavaFX thread.
                                     Platform.runLater(
                                             () -> {
@@ -241,7 +248,15 @@ public class Controller{
                                                         });
                                             }
                                     );
-                                //TODO ответ на код
+                                    break;
+                                //Принимаем значение ID + имя игрока
+                                case 2:
+                                    System.out.println("Сервер прислал ID и никнейм игрока. ");
+                                    System.out.println("Пока не обрабатывается нормально");
+                                    System.out.println("ID = " + arrSplitMess[1]);
+                                    System.out.println("nickname = "+ arrSplitMess[2]);
+                                    break;
+
 
                                 default:
                                     System.out.println("Нет протокола под такой сценарий" + "\n");

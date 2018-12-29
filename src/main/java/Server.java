@@ -167,7 +167,24 @@ class ServerSomthing extends Thread {
                               /*  for (ServerSomthing vr : Server.serverList) {
                                     vr.send("0,0,0"+ "\n"); // отослать принятое сообщение с привязанного клиента всем остальным влючая его
                                 }*/
-                                System.out.println("Высылаем ответ на 0 с клиента в виде: 0,0,0");
+                                //System.out.println("Высылаем ответ на 0 с клиента в виде: 0,0,0");
+                                break;
+                            case 2:
+                                System.out.println("Клиент прислал ID и nickname");
+                                for(Partiсipant p:Server.partiсipantsList){
+                                    if(p.uuid.equals(strSpli[1])){
+                                        p.nickname = strSpli[2];
+                                        System.out.println("nickname = "+p.nickname);
+
+                                        for(Map.Entry<String, ServerSomthing> entry : Server.serverMap.entrySet()) {
+                                            String keyID = entry.getKey();
+                                            ServerSomthing value = entry.getValue();
+                                            if (!keyID.equals(p.uuid)){
+                                            System.out.println("Высылаем код 2 + ID и имя противника ");
+                                            value.send("2,"+ p.uuid+","+p.nickname+ "\n");}
+                                        }
+                                    }
+                                }
                                 break;
                             default:
                                /* for (ServerSomthing vr : Server.serverList) {

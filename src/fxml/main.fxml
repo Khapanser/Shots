@@ -16,7 +16,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="332.0" layoutY="14.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: #ff4500;" text="         Pl1   " textFill="WHITE">
+                  <Label fx:id="player2" layoutX="332.0" layoutY="14.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: #ff4500;" text="         Pl1   " textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -34,12 +34,12 @@
                         <Image url="@../../Yellow_card.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="24.0" layoutY="23.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: #ff4500;" text="         Pl2   " textFill="WHITE">
+                  <Label fx:id="player1" layoutX="24.0" layoutY="23.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: #ff4500;" text="         Pl2   " textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="602.0" layoutY="23.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: #ff4500;" text="         Pl3   " textFill="WHITE">
+                  <Label fx:id="player3" layoutX="602.0" layoutY="23.0" prefHeight="17.0" prefWidth="87.0" style="-fx-background-color: #ff4500;" text="         Pl3   " textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>

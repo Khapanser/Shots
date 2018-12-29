@@ -36,4 +36,10 @@ public class ChangeParticipant {
     }
 
 
+    /** Метод добавления никнейма по ID
+     *
+     */
+    public static void addNickname(){}
+
+
 }
