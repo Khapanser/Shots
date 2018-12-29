@@ -111,7 +111,7 @@
             <Separator maxHeight="-Infinity" prefHeight="10.0" prefWidth="743.0" style="-fx-background-color: #ff4500;" />
             <AnchorPane prefHeight="200.0" prefWidth="726.0">
                <children>
-                  <ListView orientation="HORIZONTAL" prefHeight="200.0" prefWidth="738.0">
+                  <ListView fx:id="cardList" orientation="HORIZONTAL" prefHeight="200.0" prefWidth="738.0">
                      <opaqueInsets>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </opaqueInsets>

@@ -1,11 +1,13 @@
 package main.java;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.*;
 import java.net.Socket;
@@ -22,7 +24,24 @@ public class Controller{
     public static ClientSomthing cls;
     public static String nickname;
 
+    //
+    //public static ObservableList<String> items = FXCollections.observableArrayList("RUBY", "APPLE");
+    public static ObservableList<String> items = FXCollections.observableArrayList();
 
+    //тестовые картинки
+    private final Image IMAGE_RUBY  = new Image("https://upload.wikimedia.org/wikipedia/commons/f/f1/Ruby_logo_64x64.png");
+    private final Image IMAGE_APPLE  = new Image("http://antaki.ca/bloom/img/windows_64x64.png");
+    //private final Image IMAGE_VISTA  = new Image("http://antaki.ca/bloom/img/windows_64x64.png");
+    //private final Image IMAGE_TWITTER = new Image("http://files.softicons.com/download/social-media-icons/fresh-social-media-icons-by-creative-nerds/png/64x64/twitter-bird.png");
+    //массив с этими картинками
+    public Image[] listOfImages = {IMAGE_RUBY, IMAGE_APPLE};
+    //test inisialization
+    //ListView<String> listView = new ListView<String>();
+
+
+
+
+   // listView.setItems(items);
 
     @FXML
     public Button startButton;
@@ -34,6 +53,9 @@ public class Controller{
     public Label cardsLabel;
     @FXML
     public Label nameLabel;
+    @FXML
+    public ListView cardList;
+
 
 
 
@@ -51,6 +73,8 @@ public class Controller{
         System.out.println("НИКНЕЙМ ЗАПИСАЛСЯ НА КЛИЕНТЕ: "+nickname);
     }
 
+
+
     public void startButtonAction(ActionEvent actionEvent) {
         System.out.println("Start button clicked");
         try {
@@ -60,15 +84,9 @@ public class Controller{
 
     }
 
-/*
-    public void nameButton(ActionEvent actionEvent) {
-        System.out.println("Name button clicked");
-        this.nickname = (String)nameField.getText();
-        System.out.println("На клиенте nickname теперь = "+nickname);
+    //add ImageViews into the ListView
 
 
-
-    }*/
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -188,6 +206,8 @@ public class Controller{
                                     for (int t = 1 ;t<7; t++){
                                         System.out.println("t = "+t+", a arrSplitMess[t] = "+ arrSplitMess[t]);
                                         Controller.cards.add(Integer.parseInt(arrSplitMess[t]));
+                                        //add to observable
+                                        items.add(arrSplitMess[t]);
                                     }
                                     Controller.role = arrSplitMess[7];
 
@@ -198,6 +218,27 @@ public class Controller{
                                                 roleLabel.setText("   "+role);
                                                 cardsLabel.setText(cards.toString());
                                                 startButton.setDisable(true);
+
+                                                //show cards
+                                                cardList.setItems(items);
+                                                cardList.setCellFactory(param -> new ListCell<String>() {
+                                                    private ImageView imageView = new ImageView();
+                                                    @Override
+                                                    public void updateItem(String name, boolean empty){
+                                                        super.updateItem(name,empty);
+                                                        if(empty){
+                                                            setText(null);
+                                                            setGraphic(null);
+                                                        } else{
+                                                            if(name.equals("1"))
+                                                                imageView.setImage(listOfImages[0]);
+                                                            else if(name.equals("2"))
+                                                                imageView.setImage(listOfImages[1]);
+                                                            setText(name);
+                                                            setGraphic(imageView);
+                                                        }
+                                                    }
+                                                        });
                                             }
                                     );
                                 //TODO ответ на код
